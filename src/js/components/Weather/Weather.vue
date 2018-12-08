@@ -1,0 +1,20 @@
+<template>
+  <div class="weather">
+    <h3>Weather</h3>
+    here
+  </div>
+</template>
+
+<!--/////////////////////////////////////////////////////////////////////////-->
+
+<script>
+export default {
+  name: 'weather'
+}
+</script>
+
+<!--/////////////////////////////////////////////////////////////////////////-->
+
+<style scoped lang="scss">
+
+</style>

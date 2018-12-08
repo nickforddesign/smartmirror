@@ -15,12 +15,11 @@
 <!--/////////////////////////////////////////////////////////////////////////-->
 
 <script>
-// import Ride from './Ride'
 import Route from './Route'
 import { request, sleep } from '@/utils'
 
 const api_root = 'https://api-v3.mbta.com'
-const api_key = 'c71571c617d7416e98045492cadc0a03'
+const api_key = process.env.MBTA_KEY
 
 export default {
   name: 'transit',
