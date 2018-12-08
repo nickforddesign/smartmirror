@@ -2,7 +2,7 @@
   <div class="route">
     <icon
       :data="data.attributes" />
-    <div>
+    <div class="stop">
       {{ stop_name }}
     </div>
     <ride
@@ -61,6 +61,9 @@ export default {
 
 <style scoped lang="scss">
 .route {
-  margin-bottom: 12px;
+  margin-bottom: 20px;
+}
+.stop {
+  margin: 6px 0;
 }
 </style>
