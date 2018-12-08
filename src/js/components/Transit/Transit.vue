@@ -15,8 +15,9 @@
 <!--/////////////////////////////////////////////////////////////////////////-->
 
 <script>
-import Route from './Route'
+import { mapGetters } from 'vuex'
 import { request, sleep } from '@/utils'
+import Route from './Route'
 
 const api_root = 'https://api-v3.mbta.com'
 const api_key = process.env.MBTA_KEY
@@ -34,16 +35,16 @@ export default {
   mounted () {
     this.init()
   },
+  computed: {
+    ...mapGetters([
+      'coords'
+    ])
+  },
   methods: {
-    init () {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((p) => this.updatePosition(p))
-      }
-    },
-    updatePosition (position) {
-      const { latitude, longitude } = position.coords
-      this.latitude = latitude
-      this.longitude = longitude
+    async init () {
+      console.log('init')
+      await this.$store.dispatch('get_position')
+      console.log('ok')
       this.subscribe()
     },
     async subscribe() {
@@ -65,7 +66,9 @@ export default {
       this.sortPredictions()
     },
     async fetch () {
-      this.predictions = await request(`${api_root}/predictions?filter%5Blatitude%5D=${this.latitude}&filter%5Blongitude%5D=${this.longitude}&include=stop,route,trip,schedule&api-key=${api_key}`)
+      console.log(this.coords.latitude, this.coords.longitude)
+      console.log(api_key)
+      this.predictions = await request(`${api_root}/predictions?filter%5Blatitude%5D=${this.coords.latitude}&filter%5Blongitude%5D=${this.coords.longitude}&include=stop,route,trip,schedule&api-key=${api_key}`)
       this.mapRoutes(this.predictions)
     },
     async fetchRoutes() {

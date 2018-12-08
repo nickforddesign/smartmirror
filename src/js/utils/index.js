@@ -9,3 +9,9 @@ export function request (url, {
   return fetch(url, options)
     .then(response => response.json())
 }
+
+export function getCurrentPosition (options = {}) {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject, options)
+  })
+}

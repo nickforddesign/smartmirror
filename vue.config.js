@@ -2,8 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const env = require('./env/env.json')
 
-console.log(typeof env.mbta)
-
 module.exports = {
   lintOnSave: 'error',
   chainWebpack: config => {
@@ -17,8 +15,10 @@ module.exports = {
     config.plugin('define')
       .use(webpack.DefinePlugin, [
         {
-          'process.env.MBTA_KEY': JSON.stringify(env.mbta),
-          'process.env.OPENWEATHERMAP_KEY': env.openWeatherMap
+          'process.env': {
+            MBTA_KEY: JSON.stringify(env.mbta),
+            OPENWEATHERMAP_KEY: JSON.stringify(env.openWeatherMap)
+          }
         }
       ])
   }
