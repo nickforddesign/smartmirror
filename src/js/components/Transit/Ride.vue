@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ departure }} minutes away
+    {{ message }}
   </div>
 </template>
 
@@ -18,10 +18,12 @@ export default {
       const now = new Date()
       const diff_ms = departure_time - now
       return Math.round((diff_ms / 1000) / 60)
+    },
+    message() {
+      return this.data
+        ? `${this.departure} minutes away`
+        : '–'
     }
-  },
-  mounted() {
-    console.log(this.data)
   }
 }
 </script>
