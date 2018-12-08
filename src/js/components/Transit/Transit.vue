@@ -1,5 +1,6 @@
 <template>
   <div class="transit">
+    <h3>Transit schedule</h3>
     <div v-if="fetched">
       <route
         v-for="(route, key, index) in routes"
@@ -7,6 +8,7 @@
         :predictions="predictions_sorted[key]"
         :key="index" />
     </div>
+    <loading v-else />
   </div>
 </template>
 
@@ -47,7 +49,7 @@ export default {
     },
     async subscribe() {
       this.fetch()
-      await sleep(10000)
+      await sleep(60000)
       this.subscribe()
     },
     async mapRoutes({ data }) {

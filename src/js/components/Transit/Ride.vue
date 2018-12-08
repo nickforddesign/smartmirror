@@ -1,6 +1,11 @@
 <template>
-  <div>
-    {{ message }}
+  <div class="flex">
+    <div class="grow direction">
+      {{ direction_name }}
+    </div>
+    <div class="time">
+      {{ message }}
+    </div>
   </div>
 </template>
 
@@ -10,7 +15,8 @@
 export default {
   name: 'ride',
   props: {
-    data: Object
+    data: Object,
+    direction_name: String
   },
   computed: {
     departure() {
@@ -31,5 +37,15 @@ export default {
 <!--/////////////////////////////////////////////////////////////////////////-->
 
 <style scoped lang="scss">
+.flex {
+  width: 100%;
+}
 
+.direction {
+  text-transform: uppercase;
+}
+
+.time {
+  font-weight: bold;
+}
 </style>
