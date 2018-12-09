@@ -41,10 +41,7 @@ export default {
     ])
   },
   methods: {
-    async init () {
-      console.log('init')
-      await this.$store.dispatch('get_position')
-      console.log('ok')
+    init () {
       this.subscribe()
     },
     async subscribe() {
@@ -66,8 +63,6 @@ export default {
       this.sortPredictions()
     },
     async fetch () {
-      console.log(this.coords.latitude, this.coords.longitude)
-      console.log(api_key)
       this.predictions = await request(`${api_root}/predictions?filter%5Blatitude%5D=${this.coords.latitude}&filter%5Blongitude%5D=${this.coords.longitude}&include=stop,route,trip,schedule&api-key=${api_key}`)
       this.mapRoutes(this.predictions)
     },

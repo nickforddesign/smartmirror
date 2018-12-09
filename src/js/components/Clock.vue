@@ -38,7 +38,7 @@ export default {
   computed: {
     time() {
       if (this.date) {
-        return this.date.format('H:MMa')
+        return this.date.format('h:mma')
       }
     },
     long_date() {
