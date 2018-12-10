@@ -63,12 +63,12 @@ export default {
       this.sortPredictions()
     },
     async fetch () {
-      this.predictions = await request(`${api_root}/predictions?filter%5Blatitude%5D=${this.coords.latitude}&filter%5Blongitude%5D=${this.coords.longitude}&include=stop,route,trip,schedule&api-key=${api_key}`)
+      this.predictions = await request(`${api_root}/predictions?filter%5Blatitude%5D=${this.coords.latitude}&filter%5Blongitude%5D=${this.coords.longitude}&include=stop,route,trip,schedule&api_key=${api_key}`)
       this.mapRoutes(this.predictions)
     },
     async fetchRoutes() {
       for (const route in this.routes) {
-        this.routes[route] = (await request(`${api_root}/routes/${route}`)).data
+        this.routes[route] = (await request(`${api_root}/routes/${route}?api_key=${api_key}`)).data
       }
     },
     sortPredictions() {

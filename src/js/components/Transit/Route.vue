@@ -21,7 +21,7 @@ import Ride from './Ride'
 import Icon from './Icon'
 
 const api_root = 'https://api-v3.mbta.com'
-// const api_key = 'c71571c617d7416e98045492cadc0a03'
+const api_key = process.env.MBTA_KEY
 
 export default {
   name: 'route',
@@ -51,7 +51,7 @@ export default {
   methods: {
     async fetchStop() {
       const stop_id = this.predictions[0][0].relationships.stop.data.id
-      this.stop = (await request(`${api_root}/stops/${stop_id}`)).data
+      this.stop = (await request(`${api_root}/stops/${stop_id}?api_key=${api_key}`)).data
     }
   }
 }
